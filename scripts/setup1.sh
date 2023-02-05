@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "STARTING IN % SECONDS"
+echo "STARTING IN 5 SECONDS"
 sleep 5
 
 # make a new partition table
@@ -22,7 +22,7 @@ pacstrap -K /mnt base linux linux-firmware networkmanager
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # move setup2.sh to /mnt and execute it
-cp setup2.sh /mnt
+cp ./scripts/setup2.sh /mnt
 arch-chroot /mnt chmod +x ./setup2.sh
 arch-chroot /mnt ./setup2.sh
 
