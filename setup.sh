@@ -52,4 +52,4 @@ arch-chroot /mnt yes "birb" | passwd birb
 arch-chroot /mnt echo "birb ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
 # finish setup
-reboot
+poweroff
