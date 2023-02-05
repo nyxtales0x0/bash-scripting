@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# Script to install arch on gnome boxes - part 2 :/
-
 # setup locale
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
@@ -29,3 +27,6 @@ yes | pacman -S sudo
 useradd -m birb
 yes "birb" | passwd birb
 echo "birb ALL=(ALL:ALL) ALL" >> /etc/sudoers
+
+# enable networkmanager
+systemctl enable NetworkManager

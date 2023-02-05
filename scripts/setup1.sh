@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# Script to install arch on gnome boxes - part 1 :/
-
 # make a new partition table
 parted /dev/vda mklabel msdos
 
@@ -25,5 +23,5 @@ cp setup2.sh /mnt
 arch-chroot /mnt chmod +x ./setup2.sh
 arch-chroot /mnt ./setup2.sh
 
-# finish
-poweroff
+# delete setup2.sh from /mnt
+arch-chroot /mnt rm ./setup2.sh
