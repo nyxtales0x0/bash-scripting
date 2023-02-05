@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo "STARTING IN % SECONDS"
+sleep 5
+
 # setup locale
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
