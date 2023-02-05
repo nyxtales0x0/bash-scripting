@@ -20,37 +20,36 @@ pacstrap -K /mnt base linux linux-firmware networkmanager
 # generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 
-# chroot into /mnt
-arch-chroot /mnt
+# chroot into /mnt --- DON'T DO IT WTF
+# arch-chroot /mnt
 
 # setup locale
-echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-locale-gen
-echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+arch-chroot /mnt echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+arch-chroot /mnt locale-gen
+arch-chroot /mnt echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 
 # setup host name
-echo "arch-vm" >> /etc/hostname
+arch-chroot /mnt echo "arch-vm" >> /etc/hostname
 
 # pacman configuration
-sed -i "s/# Misc options/# Misc options\nColor/" /etc/pacman.conf
-sed -i "s/# Misc options/# Misc options\nParallelDownloads = 5/" /etc/pacman.conf
+arch-chroot /mnt sed -i "s/# Misc options/# Misc options\nColor/" /etc/pacman.conf
+arch-chroot /mnt sed -i "s/# Misc options/# Misc options\nParallelDownloads = 5/" /etc/pacman.conf
 
 # install and setup grub
-pacman -S grub
-grub-install /dev/vda
-grub-mkconfig -o /boot/grub/grub.cfg
+arch-chroot /mnt pacman -S grub
+arch-chroot /mnt grub-install /dev/vda
+arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 # set root password
-yes "root" | passwd
+arch-chroot /mnt yes "root" | passwd
 
 # install sudo package
-pacman -S sudo
+arch-chroot /mnt pacman -S sudo
 
 # setup a new user
-useradd -m birb
-yes "birb" | passwd birb
-echo "birb ALL=(ALL:ALL) ALL" >> /etc/sudoers
+arch-chroot /mnt useradd -m birb
+arch-chroot /mnt yes "birb" | passwd birb
+arch-chroot /mnt echo "birb ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
 # finish setup
-exit
 reboot
