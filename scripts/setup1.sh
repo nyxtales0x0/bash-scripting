@@ -1,8 +1,5 @@
 #!/bin/sh
 
-echo "STARTING IN 5 SECONDS"
-sleep 5
-
 # make a new partition table
 parted /dev/vda mklabel msdos
 
