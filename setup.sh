@@ -36,7 +36,7 @@ arch-chroot /mnt sed -i "s/# Misc options/# Misc options\nColor/" /etc/pacman.co
 arch-chroot /mnt sed -i "s/# Misc options/# Misc options\nParallelDownloads = 5/" /etc/pacman.conf
 
 # install and setup grub
-arch-chroot /mnt pacman -S grub
+arch-chroot /mnt yes | pacman -S grub
 arch-chroot /mnt grub-install /dev/vda
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -44,7 +44,7 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 arch-chroot /mnt yes "root" | passwd
 
 # install sudo package
-arch-chroot /mnt pacman -S sudo
+arch-chroot /mnt yes | pacman -S sudo
 
 # setup a new user
 arch-chroot /mnt useradd -m birb
